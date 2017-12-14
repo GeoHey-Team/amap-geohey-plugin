@@ -8,7 +8,7 @@
 
 此插件依赖`AMap.Heatmap`，所以必须在加载`AMap.Heatmap`插件后再获取数据
 
-### Install
+## Install
 
 可以通过NPM安装
 ```bash
@@ -26,7 +26,7 @@ npm install amap-geohey-plugin --save
 <script src="amap-geohey-plugin.min.js"></script>
 ```
 
-### Usage
+## Usage
 
 ### 示例一：传入map，自动显示
 

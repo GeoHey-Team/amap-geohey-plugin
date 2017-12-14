@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	html,
+	body {
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		margin: 0;
+		border: 0;
+		overflow: hidden;
+	}
+
+	#container {
+		width: 100%;
+		height: 100%;
+	}
+	</style>
+</head>
+
+<body>
+	<div id="container"></div>
+	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.2&key=7ef8448ac08bd68aa271d38629455ed8"></script>
+	<script type="text/javascript" src="./dist/amap-geohey-plugin.min.js"></script>
+	<script>
+	var map = new AMap.Map( 'container', {
+		resizeEnable: true,
+		zoom: 5,
+		center: [ 116.23, 39.94 ]
+	} );
+
+	map.plugin( [ "AMap.Heatmap" ], function() {
+
+		GMapViz.get( 'c1970ad5ba174d9d827e0a00bb66046a', {
+			host: 'http://geohey.com',
+			ak: 'YWE2Njk1OGE2ZjFmNDI3ZGEyNTg0Yzk0ZGM2Y2Q2ODk',
+			tileHost: 'http://{s}.geohey.com',
+			cluster: [ 's1', 's2', 's3', 's4', 's5', 's6', 's7', 's8' ]
+		}, map, function( data ) {
+			console.log( data )
+		} )
+
+	} );
+	</script>
+</body>
+
+</html>

@@ -9,11 +9,11 @@ const banner = `/*
 `;
 
 export default {
-	input: 'src/mapviz.js',
+	input: 'src/index.js',
 	output: {
 		file: 'dist/amap-geohey-plugin.js',
 		format: 'umd',
-		name: 'GMapViz',
+		name: 'AMapGeoHey',
 		banner: banner,
 		sourcemap: false
 	},

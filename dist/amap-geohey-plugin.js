@@ -6,7 +6,7 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.GMapViz = {})));
+	(factory((global.AMapGeoHey = {})));
 }(this, (function (exports) { 'use strict';
 
 function HeatColorRamp() {
@@ -2418,7 +2418,79 @@ function get(uid, options, map, callback) {
     });
 }
 
-exports.get = get;
+
+
+var mapviz = Object.freeze({
+	get: get
+});
+
+var getLayers$2 = MapVizLayers.getLayers;
+
+function getDataContent(data) {
+    var dataContent = JSON.parse(JSON.stringify(data));
+    for (var i = 0; i < dataContent.length; i++) {
+        var item = dataContent[i];
+        item.config = item.vizConfig;
+        item.visible = true;
+        delete item.vizConfig;
+    }
+    return dataContent;
+}
+
+function get$2(data, options, map) {
+
+    options = options || {};
+
+    options.uri = options.uri || Constants.uri;
+
+    if (!options.host) {
+        options.host = Constants.domain;
+        options.tileHost = Constants.tileHost;
+        options.cluster = Constants.geoheyServerCluster;
+    }
+
+    var dataContent = getDataContent(data);
+
+    var layerList = dataContent ? getLayers$2(dataContent, options, true) : [];
+
+    if (map && map instanceof AMap.Map) {
+
+        var layerArray = [];
+
+        for (var i = 0; i < layerList.length; i++) {
+
+            var item = layerList[i];
+            var layer = item.layer;
+
+            console.log(layer);
+
+            layer.setzIndex(i + 1);
+            layer.setMap(map);
+
+            if (item.utfGridLayer) {
+                item.utfGridLayer.setMap(map);
+            }
+
+            layerArray.push({
+                uid: item.dataUid,
+                type: item.dataType
+            });
+        }
+
+        layerArray.reverse();
+    }
+
+    return layerList;
+}
+
+
+
+var dataviz = Object.freeze({
+	get: get$2
+});
+
+exports.MapViz = mapviz;
+exports.DataViz = dataviz;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

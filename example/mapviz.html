@@ -25,7 +25,7 @@
 <body>
 	<div id="container"></div>
 	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.2&key=7ef8448ac08bd68aa271d38629455ed8"></script>
-	<script type="text/javascript" src="./dist/amap-geohey-plugin.min.js"></script>
+	<script type="text/javascript" src="../dist/amap-geohey-plugin.min.js"></script>
 	<script>
 	var map = new AMap.Map( 'container', {
 		resizeEnable: true,
@@ -35,7 +35,7 @@
 
 	map.plugin( [ "AMap.Heatmap" ], function() {
 
-		GMapViz.get( 'c1970ad5ba174d9d827e0a00bb66046a', {
+		AMapGeoHey.MapViz.get( 'c1970ad5ba174d9d827e0a00bb66046a', {
 			host: 'http://geohey.com',
 			ak: 'YWE2Njk1OGE2ZjFmNDI3ZGEyNTg0Yzk0ZGM2Y2Q2ODk',
 			tileHost: 'http://{s}.geohey.com',

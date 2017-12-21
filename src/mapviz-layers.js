@@ -3,7 +3,7 @@ import ajax from './ajax.js'
 import Constants from './constants.js'
 import { create as createConfig } from './mapviz-config.js'
 import { getLegendData } from './mapviz-legend.js'
-import { 
+import {
     Heat as HeatLayer,
     UTFGrid as UTFGridLayer,
     TimedTile as TimedTileLayer,

@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Amap GeoHey Plugin</title>
 	<style>
-	html,
-	body {
-		width: 100%;
-		height: 100%;
-		padding: 0;
-		margin: 0;
-		border: 0;
-		overflow: hidden;
-	}
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+			padding: 0;
+			margin: 0;
+			border: 0;
+			overflow: hidden;
+		}
 
-	#container {
-		width: 100%;
-		height: 100%;
-	}
+		#container {
+			width: 100%;
+			height: 100%;
+		}
 	</style>
 </head>
 
@@ -26,256 +27,252 @@
 	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.2&key=7ef8448ac08bd68aa271d38629455ed8"></script>
 	<script type="text/javascript" src="../dist/amap-geohey-plugin.min.js"></script>
 	<script>
-	var map = new AMap.Map( 'container', {
-		resizeEnable: true,
-		zoom: 5,
-		center: [ 116.23, 39.94 ]
-	} );
+		var map = new AMap.Map('container', {
+			resizeEnable: true,
+			zoom: 5,
+			center: [116.23, 39.94]
+		});
 
-	map.plugin( [ "AMap.Heatmap" ], function() {
+		map.plugin(["AMap.Heatmap"], function() {
 
-	const layers = AMapGeoHey.DataViz.get( [
-  {
-    "dataUid": "a31be504afa44c1ea6afa19995693600",
-    "dataType": "private",
-    "interactivity": [
-      "geoheylng"
-    ],
-    "vizConfig": {
-      "type": "marker-category",
-      "labelField": null,
-      "labelFont": "Microsoft YaHei Regular",
-      "labelSize": 12,
-      "labelDx": 0,
-      "labelDy": -20,
-      "labelAllowOverlap": true,
-      "labelPlacement": "point",
-      "blendingMode": "src-over",
-      "markerSize": 6,
-      "markerOpacity": 0.8,
-      "fieldName": "geoheylat",
-      "outlineColor": "#ffffff",
-      "outlineOpacity": 0.8,
-      "outlineWidth": 1,
-      "buckets": [
-        {
-          "value": 52.068401,
-          "color": "#5182e4"
-        },
-        {
-          "value": 51.985463,
-          "color": "#6d7be1"
-        },
-        {
-          "value": 50.410223,
-          "color": "#8874de"
-        },
-        {
-          "value": 50.231754,
-          "color": "#a36ddb"
-        },
-        {
-          "value": 49.4230814897959,
-          "color": "#bf66d8"
-        },
-        {
-          "value": 49.280846,
-          "color": "#c96dcb"
-        },
-        {
-          "value": 49.208093,
-          "color": "#be84b2"
-        },
-        {
-          "value": 48.475997,
-          "color": "#b29b9a"
-        },
-        {
-          "value": 48.291645,
-          "color": "#a7b381"
-        },
-        {
-          "value": 48.210522,
-          "color": "#9cca68"
-        },
-        {
-          "value": 48.109852,
-          "color": "#97b47c"
-        },
-        {
-          "value": 47.861389,
-          "color": "#939a94"
-        },
-        {
-          "value": 47.736446,
-          "color": "#8f7fac"
-        },
-        {
-          "value": 47.735679,
-          "color": "#8c65c5"
-        },
-        {
-          "value": 47.494089,
-          "color": "#835ccd"
-        },
-        {
-          "value": 47.4416,
-          "color": "#7370ba"
-        },
-        {
-          "value": 47.362518,
-          "color": "#6385a7"
-        },
-        {
-          "value": 47.352067,
-          "color": "#529a94"
-        },
-        {
-          "value": 47.341682,
-          "color": "#42ae81"
-        },
-        {
-          "value": 47.329414,
-          "color": "#42a188"
-        },
-        {
-          "value": 47.3231,
-          "color": "#468d95"
-        },
-        {
-          "value": 47.322096,
-          "color": "#4a79a2"
-        },
-        {
-          "value": 47.294911,
-          "color": "#4e65af"
-        },
-        {
-          "value": 47.293089,
-          "color": "#5b5db1"
-        },
-        {
-          "value": 47.244138,
-          "color": "#7f7799"
-        },
-        {
-          "value": 47.165039,
-          "color": "#a49181"
-        },
-        {
-          "value": 47.064515,
-          "color": "#c9aa69"
-        },
-        {
-          "value": 46.978926,
-          "color": "#edc451"
-        },
-        {
-          "value": 46.8184265,
-          "color": "#dcc765"
-        },
-        {
-          "value": 46.815372,
-          "color": "#b8c289"
-        },
-        {
-          "value": 46.811173,
-          "color": "#93bdae"
-        },
-        {
-          "value": 46.805945,
-          "color": "#6fb8d3"
-        },
-        {
-          "value": 46.802426,
-          "color": "#58b2ea"
-        },
-        {
-          "value": 46.7988744,
-          "color": "#7ca9c5"
-        },
-        {
-          "value": 46.7905042588235,
-          "color": "#a1a0a0"
-        },
-        {
-          "value": 46.7875163571429,
-          "color": "#c6977b"
-        },
-        {
-          "value": 46.783092,
-          "color": "#eb8e56"
-        },
-        {
-          "value": 46.7714075,
-          "color": "#e4955d"
-        },
-        {
-          "value": 46.75324,
-          "color": "#c5a57d"
-        },
-        {
-          "value": 46.752894,
-          "color": "#a5b59d"
-        },
-        {
-          "value": 46.723192,
-          "color": "#86c5be"
-        },
-        {
-          "value": 46.712715,
-          "color": "#6cd1d8"
-        },
-        {
-          "value": 46.639926,
-          "color": "#8ab5ba"
-        },
-        {
-          "value": 46.602359,
-          "color": "#a8999c"
-        },
-        {
-          "value": 46.597588,
-          "color": "#c77c7e"
-        },
-        {
-          "value": 46.593067,
-          "color": "#e56060"
-        },
-        {
-          "value": 46.590599,
-          "color": "#ef4e55"
-        },
-        {
-          "value": 46.579809,
-          "color": "#e8465b"
-        },
-        {
-          "value": 46.529473,
-          "color": "#e23e60"
-        },
-        {
-          "value": 46.528406,
-          "color": "#db3565"
-        },
-        {
-          "value": "其它",
-          "color": "#d42d6b"
-        }
-      ]
-    }
-  }
-], {
-			host: 'http://geohey.com',
-			ak: 'YWE2Njk1OGE2ZjFmNDI3ZGEyNTg0Yzk0ZGM2Y2Q2ODk',
-			tileHost: 'http://{s}.geohey.com',
-			cluster: [ 's1', 's2', 's3', 's4', 's5', 's6', 's7', 's8' ]
-		}, map )
+			const layers = AMapGeoHey.DataViz.get([{
+				"dataUid": "a31be504afa44c1ea6afa19995693600",
+				"dataType": "private",
+				"interactivity": [
+					"geoheylng"
+				],
+				"vizConfig": {
+					"type": "marker-category",
+					"labelField": null,
+					"labelFont": "Microsoft YaHei Regular",
+					"labelSize": 12,
+					"labelDx": 0,
+					"labelDy": -20,
+					"labelAllowOverlap": true,
+					"labelPlacement": "point",
+					"blendingMode": "src-over",
+					"markerSize": 6,
+					"markerOpacity": 0.8,
+					"fieldName": "geoheylat",
+					"outlineColor": "#ffffff",
+					"outlineOpacity": 0.8,
+					"outlineWidth": 1,
+					"buckets": [{
+							"value": 52.068401,
+							"color": "#5182e4"
+						},
+						{
+							"value": 51.985463,
+							"color": "#6d7be1"
+						},
+						{
+							"value": 50.410223,
+							"color": "#8874de"
+						},
+						{
+							"value": 50.231754,
+							"color": "#a36ddb"
+						},
+						{
+							"value": 49.4230814897959,
+							"color": "#bf66d8"
+						},
+						{
+							"value": 49.280846,
+							"color": "#c96dcb"
+						},
+						{
+							"value": 49.208093,
+							"color": "#be84b2"
+						},
+						{
+							"value": 48.475997,
+							"color": "#b29b9a"
+						},
+						{
+							"value": 48.291645,
+							"color": "#a7b381"
+						},
+						{
+							"value": 48.210522,
+							"color": "#9cca68"
+						},
+						{
+							"value": 48.109852,
+							"color": "#97b47c"
+						},
+						{
+							"value": 47.861389,
+							"color": "#939a94"
+						},
+						{
+							"value": 47.736446,
+							"color": "#8f7fac"
+						},
+						{
+							"value": 47.735679,
+							"color": "#8c65c5"
+						},
+						{
+							"value": 47.494089,
+							"color": "#835ccd"
+						},
+						{
+							"value": 47.4416,
+							"color": "#7370ba"
+						},
+						{
+							"value": 47.362518,
+							"color": "#6385a7"
+						},
+						{
+							"value": 47.352067,
+							"color": "#529a94"
+						},
+						{
+							"value": 47.341682,
+							"color": "#42ae81"
+						},
+						{
+							"value": 47.329414,
+							"color": "#42a188"
+						},
+						{
+							"value": 47.3231,
+							"color": "#468d95"
+						},
+						{
+							"value": 47.322096,
+							"color": "#4a79a2"
+						},
+						{
+							"value": 47.294911,
+							"color": "#4e65af"
+						},
+						{
+							"value": 47.293089,
+							"color": "#5b5db1"
+						},
+						{
+							"value": 47.244138,
+							"color": "#7f7799"
+						},
+						{
+							"value": 47.165039,
+							"color": "#a49181"
+						},
+						{
+							"value": 47.064515,
+							"color": "#c9aa69"
+						},
+						{
+							"value": 46.978926,
+							"color": "#edc451"
+						},
+						{
+							"value": 46.8184265,
+							"color": "#dcc765"
+						},
+						{
+							"value": 46.815372,
+							"color": "#b8c289"
+						},
+						{
+							"value": 46.811173,
+							"color": "#93bdae"
+						},
+						{
+							"value": 46.805945,
+							"color": "#6fb8d3"
+						},
+						{
+							"value": 46.802426,
+							"color": "#58b2ea"
+						},
+						{
+							"value": 46.7988744,
+							"color": "#7ca9c5"
+						},
+						{
+							"value": 46.7905042588235,
+							"color": "#a1a0a0"
+						},
+						{
+							"value": 46.7875163571429,
+							"color": "#c6977b"
+						},
+						{
+							"value": 46.783092,
+							"color": "#eb8e56"
+						},
+						{
+							"value": 46.7714075,
+							"color": "#e4955d"
+						},
+						{
+							"value": 46.75324,
+							"color": "#c5a57d"
+						},
+						{
+							"value": 46.752894,
+							"color": "#a5b59d"
+						},
+						{
+							"value": 46.723192,
+							"color": "#86c5be"
+						},
+						{
+							"value": 46.712715,
+							"color": "#6cd1d8"
+						},
+						{
+							"value": 46.639926,
+							"color": "#8ab5ba"
+						},
+						{
+							"value": 46.602359,
+							"color": "#a8999c"
+						},
+						{
+							"value": 46.597588,
+							"color": "#c77c7e"
+						},
+						{
+							"value": 46.593067,
+							"color": "#e56060"
+						},
+						{
+							"value": 46.590599,
+							"color": "#ef4e55"
+						},
+						{
+							"value": 46.579809,
+							"color": "#e8465b"
+						},
+						{
+							"value": 46.529473,
+							"color": "#e23e60"
+						},
+						{
+							"value": 46.528406,
+							"color": "#db3565"
+						},
+						{
+							"value": "其它",
+							"color": "#d42d6b"
+						}
+					]
+				}
+			}], {
+				host: 'http://geohey.com',
+				ak: 'YWE2Njk1OGE2ZjFmNDI3ZGEyNTg0Yzk0ZGM2Y2Q2ODk',
+				tileHost: 'http://{s}.geohey.com',
+				cluster: ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8']
+			}, map)
 
-		console.log( layers )
+			console.log(layers)
 
-	} );
-
+		});
 	</script>
 </body>
 

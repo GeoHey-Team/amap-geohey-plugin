@@ -133,7 +133,7 @@ map.plugin( [ "AMap.Heatmap" ], function() {
 ```
 
 ## DataViz
-`AMapGeoHey.MapViz`用来对一个或多个数据进行可视化，它可以通过一个**数据上图配置**来获取图层列表或直接绘制出来。
+`AMapGeoHey.DataViz`用来对一个或多个数据进行可视化，它可以通过一个**数据上图配置**来获取图层列表或直接绘制出来。
 
 数据上图配置可以在数据上图参数面板中得到
 

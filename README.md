@@ -64,7 +64,7 @@ var map = new AMap.Map( 'container', {
 // 依赖AMap.Heatmap
 map.plugin( [ "AMap.Heatmap" ], function() {
 
-    GMapViz.get( '4229f22d186a456781ba4873db04e14c', {
+    AMapGeoHey.MapViz.get( '4229f22d186a456781ba4873db04e14c', {
         host: 'http://geohey.com',                          // 数据请求地址
         ak: 'OTJlMGUxMGNkYTUzNGZhY2FlN2I2M2UzOGQ5ZWVhMTU',  // API Key
         tileHost: 'http://{s}.geohey.com',                  // 瓦片请求地址
@@ -88,7 +88,7 @@ var map = new AMap.Map( 'container', {
 
 map.plugin( [ "AMap.Heatmap" ], function() {
 
-    GMapViz.get( '4229f22d186a456781ba4873db04e14c', {
+    AMapGeoHey.MapViz.get( '4229f22d186a456781ba4873db04e14c', {
         host: 'http://geohey.com',                          // 数据请求地址
         ak: 'OTJlMGUxMGNkYTUzNGZhY2FlN2I2M2UzOGQ5ZWVhMTU',  // API Key
         tileHost: 'http://{s}.geohey.com',                  // 瓦片请求地址

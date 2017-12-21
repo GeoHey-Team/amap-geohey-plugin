@@ -1,5 +1,5 @@
 /*
- * GeoHey AMap Plugin v0.0.1
+ * GeoHey AMap Plugin v0.0.2
  * GeoHey.com
  */
 
@@ -2461,8 +2461,6 @@ function get$2(data, options, map) {
 
             var item = layerList[i];
             var layer = item.layer;
-
-            console.log(layer);
 
             layer.setzIndex(i + 1);
             layer.setMap(map);

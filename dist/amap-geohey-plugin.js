@@ -1,5 +1,5 @@
 /*
- * GeoHey AMap Plugin v0.0.2
+ * GeoHey AMap Plugin v0.0.3
  * GeoHey.com
  */
 
@@ -1363,7 +1363,7 @@ function Heat(url, dataFunc, options) {
 	};
 
 	var heatmapOptions = {
-		radius: options.heatSizeUnit === 'map' ? 20 : options.radius * HEAT_SIZE_SCALE,
+		radius: options.radiusUnit === 'map' ? 20 : options.radius * HEAT_SIZE_SCALE,
 		opacity: [options.minOpacity, options.maxOpacity],
 		gradient: options.colors
 	};
@@ -1384,7 +1384,7 @@ function Heat(url, dataFunc, options) {
 		if (tiles[key]) {
 			fail();
 
-			[].push.apply(_this.dataSet, dataPoints);
+			[].push.apply(_this.dataSet, tiles[key]);
 
 			_this._redraw();
 			return;
@@ -1421,7 +1421,7 @@ function Heat(url, dataFunc, options) {
 
 	this._layer = new AMap.TileLayer.Flexible({
 		createTile: _update,
-		cacheSize: 0
+		cacheSize: 1
 	});
 
 	this._heatmap = new AMap.Heatmap(null, heatmapOptions);
@@ -1438,27 +1438,30 @@ function Heat(url, dataFunc, options) {
 				if (arg && arg !== this.map) {
 					this.map = arg;
 
-					if (options.heatSizeUnit === 'map') {
+					if (this.options.radiusUnit === 'map') {
 						var res = this.map.getResolution();
-						var heatSize = options.radius / res;
+
+						var heatSize = this.options.radius / res;
 
 						heatmapOptions.radius = heatSize * HEAT_SIZE_SCALE;
 
 						this._heatmap.setOptions(heatmapOptions);
 					}
 
+					this.map.on('zoomstart', function () {
+						_this2.dataSet = [];
+					});
+
 					this.map.on('zoomend', function () {
 
-						if (options.heatSizeUnit === 'map') {
+						if (_this2.options.radiusUnit === 'map') {
 							var _res = _this2.map.getResolution();
-							var _heatSize = options.radius / _res;
+							var _heatSize = _this2.options.radius / _res;
 
 							heatmapOptions.radius = _heatSize * HEAT_SIZE_SCALE;
 
 							_this2._heatmap.setOptions(heatmapOptions);
 						}
-
-						_this2.dataSet = [];
 					});
 				}
 			}

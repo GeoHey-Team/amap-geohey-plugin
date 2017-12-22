@@ -16,7 +16,7 @@ function Heat( url, dataFunc, options ) {
 	}
 
 	const heatmapOptions = {
-		radius: options.heatSizeUnit === 'map' ? 20 : options.radius * HEAT_SIZE_SCALE,
+		radius: options.radiusUnit === 'map' ? 20 : options.radius * HEAT_SIZE_SCALE,
 		opacity: [ options.minOpacity, options.maxOpacity ],
 		gradient: options.colors
 	}
@@ -37,7 +37,7 @@ function Heat( url, dataFunc, options ) {
 		if ( tiles[ key ] ) {
 			fail();
 
-			[].push.apply( this.dataSet, dataPoints )
+			[].push.apply( this.dataSet,  tiles[ key ] )
 
 			this._redraw();
 			return;
@@ -48,7 +48,7 @@ function Heat( url, dataFunc, options ) {
 			success: ( xhr, data ) => {
 
 				data = JSON.parse( data );
-				
+
 				const dataPoints = dataFunc( tileInfo, data, layerOptions ) || [];
 
 				tiles[ key ] = dataPoints;
@@ -77,7 +77,7 @@ function Heat( url, dataFunc, options ) {
 
 	this._layer = new AMap.TileLayer.Flexible( {
 		createTile: _update,
-		cacheSize: 0
+		cacheSize: 1
 	} )
 
 	this._heatmap = new AMap.Heatmap( null, heatmapOptions );
@@ -93,27 +93,30 @@ function Heat( url, dataFunc, options ) {
 				if ( arg && arg !== this.map ) {
 					this.map = arg;
 
-					if ( options.heatSizeUnit === 'map' ) {
+					if ( this.options.radiusUnit === 'map' ) {
 						const res = this.map.getResolution();
-						const heatSize = options.radius / res;
+
+						const heatSize = this.options.radius / res;
 
 						heatmapOptions.radius = heatSize * HEAT_SIZE_SCALE;
 
 						this._heatmap.setOptions( heatmapOptions );
 					}
 
+					this.map.on( 'zoomstart', () => {
+						this.dataSet = [];
+					} )
+
 					this.map.on( 'zoomend', () => {
 
-						if ( options.heatSizeUnit === 'map' ) {
+						if ( this.options.radiusUnit === 'map' ) {
 							const res = this.map.getResolution();
-							const heatSize = options.radius / res;
+							const heatSize = this.options.radius / res;
 
 							heatmapOptions.radius = heatSize * HEAT_SIZE_SCALE;
 
 							this._heatmap.setOptions( heatmapOptions );
 						}
-
-						this.dataSet = []
 					} )
 				}
 			}
@@ -130,7 +133,7 @@ function Heat( url, dataFunc, options ) {
 }
 
 Heat.prototype = Object.assign( Object.create( Layer.prototype ), {
-	
+
 } )
 
 

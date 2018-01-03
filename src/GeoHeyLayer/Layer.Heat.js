@@ -67,13 +67,20 @@ function Heat( url, dataFunc, options ) {
 
 	}
 
-	this._redraw = () => {
-		this._heatmap.setDataSet( {
-			max: options.topValue,
-			data: this.dataSet
-		} )
-	}
+	let _handler;
 
+	this._redraw = () => {
+
+		clearTimeout( _handler );
+
+		_handler = setTimeout( () => {
+			this._heatmap.setDataSet( {
+				max: options.topValue,
+				data: this.dataSet
+			} )
+		}, 300 );
+
+	}
 
 	this._layer = new AMap.TileLayer.Flexible( {
 		createTile: _update,

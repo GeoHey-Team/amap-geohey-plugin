@@ -1,5 +1,5 @@
 /*
- * GeoHey AMap Plugin v0.0.3
+ * GeoHey AMap Plugin v0.0.4
  * GeoHey.com
  */
 
@@ -1412,11 +1412,18 @@ function Heat(url, dataFunc, options) {
 		});
 	};
 
+	var _handler = void 0;
+
 	this._redraw = function () {
-		_this._heatmap.setDataSet({
-			max: options.topValue,
-			data: _this.dataSet
-		});
+
+		clearTimeout(_handler);
+
+		_handler = setTimeout(function () {
+			_this._heatmap.setDataSet({
+				max: options.topValue,
+				data: _this.dataSet
+			});
+		}, 300);
 	};
 
 	this._layer = new AMap.TileLayer.Flexible({

@@ -152,7 +152,7 @@ map.plugin( [ "AMap.Heatmap" ], function() {
 | ak	| String	| null	| API Key，可以在平台密钥管理页面申请	|
 | tileHost	| String	| 'http://{s}.geohey.com'	| 瓦片请求地址	|
 | cluster	| Array	| [ 's1', 's2', 's3', 's4', 's5', 's6', 's7', 's8' ]	| 瓦片服务器集群	|
-| uri	| String or Object	| '/s/dataviz/'	| dataviz服务地址, 可以为字符串或一个对象。 指定为对象的情况适用于上图配置中不同的dataType类型具有不同的uri地址, 对象格式应为 {dataType: uri}, 在下面的示例中, 将dataType 为 'private' 和 'public' 两种类型的数据分别指定了uri, 只不过在示例中指定为了相同的值	|
+| uri	| String or Object	| '/s/dataviz/'	| dataviz服务地址, 可以为字符串或一个对象。 指定为对象的情况适用于上图配置中不同的dataType类型具有不同的uri地址, 对象格式应为 {dataType: uri}, 在下面的示例中, 将dataType 为 'private' 和 'tmp' 两种类型的数据分别指定了uri|
 
 
 ### 示例
@@ -193,7 +193,7 @@ map.plugin( [ "AMap.Heatmap" ], function() {
 	},
     {
         "dataUid": "09ed9bfde90349799b8193ad9b5c0ec4",
-        "dataType": "public",
+        "dataType": "tmp",
         "vizConfig": {
           "type": "marker-simple",
           "labelField": null,
@@ -219,8 +219,8 @@ map.plugin( [ "AMap.Heatmap" ], function() {
 		tileHost: 'http://{s}.geohey.com',
 		cluster: ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8'],
         uri: {
-            private: '/s/dataviz/',
-            public: '/s/dataviz/'
+            private: '/s/dataviz/',    //dataType为 private 的数据对应的uri
+            tmp: '/tmp/dataviz/'       //dataType为 tmp 的数据对应的uri
         }
 	}, map )
 

@@ -291,13 +291,17 @@ function merge(objs) {
     return objs;
 }
 
-
+function isObject(obj) {
+    return Object.prototype.toString.call(obj) === '[object Object]';
+}
 
 function isArray(obj) {
     return Object.prototype.toString.call(obj) === '[object Array]';
 }
 
-
+function isString(obj) {
+    return Object.prototype.toString.call(obj) === '[object String]';
+}
 
 function isFunction(obj) {
     return Object.prototype.toString.call(obj) === '[object Function]';
@@ -2338,6 +2342,10 @@ var getLayers$1 = function getLayers(dataContent, options, noConvert) {
 
     var dataContentLength = dataContent.length;
 
+    var uriObj = isObject(options.uri) ? JSON.parse(JSON.stringify(options.uri)) : '';
+
+    var uriMappingVal = '';
+
     for (var i = dataContentLength - 1; i >= 0; i--) {
         var layerData = dataContent[i];
 
@@ -2361,6 +2369,30 @@ var getLayers$1 = function getLayers(dataContent, options, noConvert) {
             vizData: layerData,
             layer: null
         };
+
+        if (uriObj) {
+
+            var uriError = false;
+
+            try {
+
+                uriMappingVal = uriObj[layerData.dataType];
+
+                if (!uriMappingVal) {
+                    uriError = true;
+                    throw new Error('options中指定的 uri 对象与数据上图配置中的 dataType 属性值不匹配');
+                }
+
+                if (!isString(uriMappingVal)) {
+                    uriError = true;
+                    throw new Error('options中指定的 uri 对象格式错误');
+                }
+            } catch (e) {
+                console.error(e);
+            } finally {
+                options.uri = uriError ? Constants.uri : uriMappingVal;
+            }
+        }
 
         if (configType == Constants.configTypes.MARKER_HEAT) {
 

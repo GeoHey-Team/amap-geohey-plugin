@@ -152,7 +152,7 @@ map.plugin( [ "AMap.Heatmap" ], function() {
 | ak	| String	| null	| API Key，可以在平台密钥管理页面申请	|
 | tileHost	| String	| 'http://{s}.geohey.com'	| 瓦片请求地址	|
 | cluster	| Array	| [ 's1', 's2', 's3', 's4', 's5', 's6', 's7', 's8' ]	| 瓦片服务器集群	|
-| uri	| String	| '/s/dataviz/'	| dataviz服务地址	|
+| uri	| String or Object	| '/s/dataviz/'	| dataviz服务地址, 可以为字符串或一个对象。 指定为对象的情况适用于上图配置中不同的dataType类型具有不同的uri地址, 对象格式应为 {dataType: uri}, 在下面的示例中, 将dataType 为 'private' 和 'public' 两种类型的数据分别指定了uri, 只不过在示例中指定为了相同的值	|
 
 
 ### 示例
@@ -190,11 +190,38 @@ map.plugin( [ "AMap.Heatmap" ], function() {
 			"outlineOpacity": 0.8,
 			"outlineWidth": 1
 		}
-	} ], {
+	},
+    {
+        "dataUid": "09ed9bfde90349799b8193ad9b5c0ec4",
+        "dataType": "public",
+        "vizConfig": {
+          "type": "marker-simple",
+          "labelField": null,
+          "labelColor": "#000000",
+          "labelFont": "Microsoft YaHei Regular",
+          "labelSize": 12,
+          "labelDx": 0,
+          "labelDy": -20,
+          "labelHaloColor": "#fff",
+          "labelAllowOverlap": true,
+          "labelPlacement": "point",
+          "blendingMode": "src-over",
+          "markerColor": "#c00000",
+          "markerOpacity": 0.8,
+          "markerSize": 18.4,
+          "outlineColor": "#ffffff",
+          "outlineOpacity": 0.8,
+          "outlineWidth": 1
+        }
+    } ], {
 		host: 'http://geohey.com',
 		ak: 'YWE2Njk1OGE2ZjFmNDI3ZGEyNTg0Yzk0ZGM2Y2Q2ODk',
 		tileHost: 'http://{s}.geohey.com',
-		cluster: ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8']
+		cluster: ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 's8'],
+        uri: {
+            private: '/s/dataviz/',
+            public: '/s/dataviz/'
+        }
 	}, map )
 
 	console.log( layerList )

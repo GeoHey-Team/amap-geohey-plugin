@@ -1,4 +1,4 @@
-import { merge } from './util.js'
+import { merge, isObject, isString } from './util.js'
 import ajax from './ajax.js'
 import Constants from './constants.js'
 import { create as createConfig } from './mapviz-config.js'
@@ -367,6 +367,10 @@ let getLayers = function( dataContent, options, noConvert ) {
 
     let dataContentLength = dataContent.length;
 
+    let uriObj = isObject(options.uri) ? JSON.parse( JSON.stringify( options.uri ) ) : '';
+
+    let uriMappingVal = ''
+
     for ( let i = dataContentLength - 1; i >= 0; i-- ) {
         let layerData = dataContent[ i ];
 
@@ -389,6 +393,32 @@ let getLayers = function( dataContent, options, noConvert ) {
             config: layerData.config,
             vizData: layerData,
             layer: null
+        }
+
+        if ( uriObj ) {
+
+            let uriError = false;
+
+            try {
+
+                uriMappingVal = uriObj[ layerData.dataType ];
+
+                if ( !uriMappingVal ) {
+                    uriError = true;
+                    throw new Error( 'options中指定的 uri 对象与数据上图配置中的 dataType 属性值不匹配' );
+                }
+
+                if ( !isString(uriMappingVal) ) {
+                    uriError = true;
+                    throw new Error( 'options中指定的 uri 对象格式错误' );
+                }
+
+            } catch ( e ) {
+                console.error( e );
+            } finally {
+                options.uri = uriError ? Constants.uri : uriMappingVal;
+            }
+            
         }
 
         if ( configType == Constants.configTypes.MARKER_HEAT ) {

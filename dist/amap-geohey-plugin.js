@@ -2343,6 +2343,7 @@ var getLayers$1 = function getLayers(dataContent, options, noConvert) {
     var dataContentLength = dataContent.length;
 
     var uriObj = isObject(options.uri) ? JSON.parse(JSON.stringify(options.uri)) : '';
+    var copyOptions = JSON.parse(JSON.stringify(options));
 
     var uriMappingVal = '';
 
@@ -2390,19 +2391,19 @@ var getLayers$1 = function getLayers(dataContent, options, noConvert) {
             } catch (e) {
                 console.error(e);
             } finally {
-                options.uri = uriError ? Constants.uri : uriMappingVal;
+                copyOptions.uri = uriError ? Constants.uri : uriMappingVal;
             }
         }
 
         if (configType == Constants.configTypes.MARKER_HEAT) {
 
-            item.layer = getHeatLayer(layerData, options);
+            item.layer = getHeatLayer(layerData, copyOptions);
         } else if (configType == Constants.configTypes.MARKER_FLUID) {
 
             console.warn('AMap GeoHey MapViz: 不支持流体场图');
         } else {
 
-            item.layer = getTileLayer(layerData, options);
+            item.layer = getTileLayer(layerData, copyOptions);
 
             if (item.layer._utfGridLayer) {
                 item.utfGridLayer = item.layer._utfGridLayer;

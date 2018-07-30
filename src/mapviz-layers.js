@@ -368,6 +368,7 @@ let getLayers = function( dataContent, options, noConvert ) {
     let dataContentLength = dataContent.length;
 
     let uriObj = isObject(options.uri) ? JSON.parse( JSON.stringify( options.uri ) ) : '';
+    let copyOptions = JSON.parse( JSON.stringify( options ) );
 
     let uriMappingVal = ''
 
@@ -398,7 +399,7 @@ let getLayers = function( dataContent, options, noConvert ) {
         if ( uriObj ) {
 
             let uriError = false;
-
+            
             try {
 
                 uriMappingVal = uriObj[ layerData.dataType ];
@@ -416,14 +417,14 @@ let getLayers = function( dataContent, options, noConvert ) {
             } catch ( e ) {
                 console.error( e );
             } finally {
-                options.uri = uriError ? Constants.uri : uriMappingVal;
+                copyOptions.uri = uriError ? Constants.uri : uriMappingVal;
             }
-            
+
         }
 
         if ( configType == Constants.configTypes.MARKER_HEAT ) {
 
-            item.layer = getHeatLayer( layerData, options );
+            item.layer = getHeatLayer( layerData, copyOptions );
 
         } else if ( configType == Constants.configTypes.MARKER_FLUID ) {
 
@@ -431,7 +432,7 @@ let getLayers = function( dataContent, options, noConvert ) {
 
         } else {
 
-            item.layer = getTileLayer( layerData, options );
+            item.layer = getTileLayer( layerData, copyOptions );
 
             if ( item.layer._utfGridLayer ) {
                 item.utfGridLayer = item.layer._utfGridLayer;

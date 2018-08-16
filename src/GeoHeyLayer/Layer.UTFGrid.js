@@ -151,9 +151,9 @@ UTFGrid.prototype = Object.assign( Object.create( Layer.prototype ), {
 
 		const { originX, originY, zoomReses, tileSize } = this
 
-		const res = map.getResolution();
+		const res = this.map.getResolution();
 
-		const z = map.getZoom();
+		const z = this.map.getZoom();
 
 		const [ mapX, mapY ] = WebMercator.project( e.lnglat.lng, e.lnglat.lat );
 

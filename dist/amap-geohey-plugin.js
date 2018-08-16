@@ -1750,9 +1750,9 @@ UTFGrid.prototype = Object.assign(Object.create(Layer.prototype), {
 		    tileSize = this.tileSize;
 
 
-		var res = map.getResolution();
+		var res = this.map.getResolution();
 
-		var z = map.getZoom();
+		var z = this.map.getZoom();
 
 		var _WebMercator$project = WebMercator.project(e.lnglat.lng, e.lnglat.lat),
 		    _WebMercator$project2 = slicedToArray(_WebMercator$project, 2),

@@ -2343,13 +2343,12 @@ var getLayers$1 = function getLayers(dataContent, options, noConvert) {
     var dataContentLength = dataContent.length;
 
     var uriObj = isObject(options.uri) ? JSON.parse(JSON.stringify(options.uri)) : '';
-    var copyOptions = JSON.parse(JSON.stringify(options));
 
     var uriMappingVal = '';
 
     for (var i = dataContentLength - 1; i >= 0; i--) {
         var layerData = dataContent[i];
-
+        var copyOptions = JSON.parse(JSON.stringify(options));
         var configType = layerData.config.type;
 
         if (!noConvert) {

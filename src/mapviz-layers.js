@@ -368,13 +368,12 @@ let getLayers = function( dataContent, options, noConvert ) {
     let dataContentLength = dataContent.length;
 
     let uriObj = isObject(options.uri) ? JSON.parse( JSON.stringify( options.uri ) ) : '';
-    let copyOptions = JSON.parse( JSON.stringify( options ) );
 
     let uriMappingVal = ''
 
     for ( let i = dataContentLength - 1; i >= 0; i-- ) {
         let layerData = dataContent[ i ];
-
+        let copyOptions = JSON.parse( JSON.stringify( options ) );
         let configType = layerData.config.type;
 
         if ( !noConvert ) {
